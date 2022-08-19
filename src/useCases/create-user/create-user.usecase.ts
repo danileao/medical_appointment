@@ -10,7 +10,6 @@ export type UserRequest = {
 export class CreateUserUseCase {
   async execute(data: UserRequest) {
     const userRepository = UserRepository.getInstance()
-    console.log({ userRepository })
 
     const user = User.create(data)
 
