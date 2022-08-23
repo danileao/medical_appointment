@@ -1,20 +1,2 @@
-info: Label🏷️: 19/08/2022 00:24:13: Usuário sendo criado!
-error: Label🏷️: 19/08/2022 00:24:13: Error: Username already exists
-    at CreateUserUseCase.<anonymous> (/home/dany/cursos/node/medical_appointment/src/useCases/create-user/create-user.usecase.ts:23:13)
-    at Generator.next (<anonymous>)
-    at fulfilled (/home/dany/cursos/node/medical_appointment/src/useCases/create-user/create-user.usecase.ts:5:58)
-    at processTicksAndRejections (node:internal/process/task_queues:96:5), [object Object]
-info: Label🏷️: 19/08/2022 00:24:40: Usuário sendo criado!
-info: Label🏷️: 19/08/2022 00:24:44: Usuário sendo criado!
-error: Label🏷️: 19/08/2022 00:24:44: Error: Username already exists
-    at CreateUserUseCase.<anonymous> (/home/dany/cursos/node/medical_appointment/src/useCases/create-user/create-user.usecase.ts:23:13)
-    at Generator.next (<anonymous>)
-    at fulfilled (/home/dany/cursos/node/medical_appointment/src/useCases/create-user/create-user.usecase.ts:5:58)
-    at processTicksAndRejections (node:internal/process/task_queues:96:5), [object Object]
-info: Label🏷️: 19/08/2022 00:24:59: Usuário sendo criado!
-info: Label🏷️: 19/08/2022 00:25:00: Usuário sendo criado!
-error: Label🏷️: 19/08/2022 00:25:00: Error: Username already exists
-    at CreateUserUseCase.<anonymous> (/home/dany/cursos/node/medical_appointment/src/useCases/create-user/create-user.usecase.ts:23:13)
-    at Generator.next (<anonymous>)
-    at fulfilled (/home/dany/cursos/node/medical_appointment/src/useCases/create-user/create-user.usecase.ts:5:58)
-    at processTicksAndRejections (node:internal/process/task_queues:96:5), {"username":"admin","password":"1234","name":"João de Souza","isAdmin":true}
+{"level":"info","message":"Usuário sendo criado!","timestamp":"19/08/2022 01:27:00"}
+{"level":"error","message":"PARAMETER_REQUIRED_ERROR: Username/password is required.\n    at CreateUserUseCase.<anonymous> (/home/dany/cursos/node/medical_appointment/src/useCases/create-user/create-user.usecase.ts:18:13)\n    at Generator.next (<anonymous>)\n    at /home/dany/cursos/node/medical_appointment/src/useCases/create-user/create-user.usecase.ts:8:71\n    at new Promise (<anonymous>)\n    at __awaiter (/home/dany/cursos/node/medical_appointment/src/useCases/create-user/create-user.usecase.ts:4:12)\n    at CreateUserUseCase.execute (/home/dany/cursos/node/medical_appointment/src/useCases/create-user/create-user.usecase.ts:18:16)\n    at /home/dany/cursos/node/medical_appointment/src/useCases/create-user/create-user.controller.ts:12:36\n    at Generator.next (<anonymous>)\n    at /home/dany/cursos/node/medical_appointment/src/useCases/create-user/create-user.controller.ts:8:71\n    at new Promise (<anonymous>)","timestamp":"19/08/2022 01:27:00"}
