@@ -1,5 +1,5 @@
-import { User } from '../../entities/user.entity'
-import { UserRepository } from '../../repositories/user.repository'
+import { User } from "../../../../entities/user.entity"
+import { IUserRepositoy } from "../../repositories/user.repository"
 
 export type UserRequest = {
   name: string
@@ -8,8 +8,9 @@ export type UserRequest = {
 }
 
 export class CreateUserUseCase {
+  constructor(private userRepository: IUserRepositoy) { }
+
   async execute(data: UserRequest) {
-    const userRepository = UserRepository.getInstance()
 
     const user = User.create(data)
 
@@ -17,12 +18,12 @@ export class CreateUserUseCase {
       throw new Error('Username/password is required.')
     }
 
-    const existUser = await userRepository.findByUsername(data.username)
+    const existUser = await this.userRepository.findByUsername(data.username)
 
     if (existUser) {
       throw new Error('Username already exists')
     }
-    const userCreated = await userRepository.save(user)
+    const userCreated = await this.userRepository.save(user)
 
     return userCreated
   }
