@@ -1,14 +1,13 @@
-import { test, describe, expect, beforeAll } from 'vitest'
-import { randomUUID } from 'crypto'
+import { beforeAll, describe, expect, test } from 'vitest'
+import { Speciality } from '../../../../speciality/entities/speciality.entity'
+import { SpecialityMemoryRepository } from '../../../../speciality/repositories/implementations/speciality.memory.repository'
+import { ISpecialityRepository } from '../../../../speciality/repositories/speciality.repository'
+import { UserMemoryRepository } from '../../../../users/repositories/implementations/user.memory.repository'
+import { DoctorMemoryRepository } from '../../../repositories/implementations/memory/doctor-memory.repository'
 import {
   CreateDoctorRequest,
   CreateDoctorUseCase,
 } from '../create-doctor.usecase'
-import { UserMemoryRepository } from '../../../../users/repositories/implementations/user.memory.repository'
-import { DoctorMemoryRepository } from '../../../repositories/implementations/doctor-memory.repository'
-import { SpecialityMemoryRepository } from '../../../../speciality/repositories/implementations/speciality.memory.repository'
-import { Speciality } from '../../../../speciality/entities/speciality.entity'
-import { ISpecialityRepository } from '../../../../speciality/repositories/speciality.repository'
 
 let specialityRepository: ISpecialityRepository
 let speciality: Speciality
