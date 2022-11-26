@@ -82,6 +82,57 @@
           }
         }
       }
+    },
+    "/doctor-info": {
+      "post": {
+        "description": "Cadastro de informação de um médico",
+        "tags": ["doctor-info"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DoctorInfoRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Informação do médico criado com sucesso"
+          },
+          "400": {
+            "description": "Erro de cadastro"
+          }
+        }
+      }
+    },
+    "/patients": {
+      "post": {
+        "description": "Cadastro de um paciente",
+        "tags": ["patients"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatientRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Paciente criado com sucesso"
+          },
+          "400": {
+            "description": "Erro de cadastro"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -175,6 +226,62 @@
             "type": "string",
             "description": "Especialidade do médico",
             "format": "uuid"
+          }
+        }
+      },
+      "DoctorInfoRequest": {
+        "type": "object",
+        "properties": {
+          "startAt": {
+            "type": "string",
+            "description": "Horário de início de atendimento",
+            "example": "10:00"
+          },
+          "endAt": {
+            "type": "string",
+            "description": "Horário de término de atendimento",
+            "example": "11:00"
+          },
+          "duration": {
+            "type": "number",
+            "description": "Duração do atendimento em minutos",
+            "example": "40"
+          },
+          "price": {
+            "type": "number",
+            "description": "Valor do atendimento",
+            "example": "150"
+          }
+        }
+      },
+      "PatientRequest": {
+        "type": "object",
+        "properties": {
+          "document": {
+            "type": "string",
+            "description": "Documento do paciente",
+            "example": "123456",
+            "min": 5
+          },
+          "email": {
+            "type": "string",
+            "description": "Email do paciente",
+            "example": "email@email.com.br"
+          },
+          "username": {
+            "type": "string",
+            "description": "Username do paciente",
+            "example": "username"
+          },
+          "password": {
+            "type": "string",
+            "description": "Senha do paciente",
+            "example": "password"
+          },
+          "name": {
+            "type": "string",
+            "description": "Nome do paciente",
+            "example": "username"
           }
         }
       }

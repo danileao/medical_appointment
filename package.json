@@ -15,11 +15,13 @@
   "dependencies": {
     "@prisma/client": "^4.4.0",
     "bcryptjs": "^2.4.3",
+    "dayjs": "^1.11.6",
     "dotenv": "^16.0.3",
     "express": "^4.18.1",
     "jsonwebtoken": "^8.5.1",
     "swagger-ui-express": "^4.5.0",
-    "winston": "^3.8.1"
+    "winston": "^3.8.1",
+    "zod": "^3.19.1"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",

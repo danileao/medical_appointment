@@ -14,7 +14,8 @@ model User {
   password  String
   isAdmin   Boolean  @default(false)
   createdAt DateTime @default(now())
-  Doctor    Doctor?
+  doctor    Doctor?
+  patient   Patient?
 
   @@map("users")
 }
@@ -25,7 +26,7 @@ model Speciality {
   description String
 
   createdAt DateTime @default(now())
-  Doctor    Doctor[]
+  doctor    Doctor[]
 
   @@map("specialities")
 }
@@ -41,7 +42,30 @@ model Doctor {
   speciality    Speciality @relation(fields: [speciality_id], references: [id])
   speciality_id String
 
-  createdAt DateTime @default(now())
+  createdAt  DateTime    @default(now())
+  doctorInfo DoctorInfo?
 
   @@map("doctors")
+}
+
+model DoctorInfo {
+  id        String  @id @default(uuid())
+  start_at  String
+  end_at    String
+  duration  Int
+  price     Decimal
+  doctor_id String  @unique
+  doctor    Doctor  @relation(fields: [doctor_id], references: [id])
+
+  @@map("doctor_info")
+}
+
+model Patient {
+  id       String @id @default(uuid())
+  document String @unique
+  email    String @unique
+  user     User   @relation(fields: [user_id], references: [id])
+  user_id  String @unique
+
+  @@map("patients")
 }
