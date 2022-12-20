@@ -37,4 +37,32 @@ export class PatientPrismaRepository implements IPatientRepository {
     }
     return null
   }
+
+  async findById(id: string): Promise<Patient | null> {
+    const patient = await prismaClient.patient.findFirst({
+      where: {
+        id,
+      },
+    })
+
+    if (patient) {
+      return PatientMapper.prismaToEntity(patient)
+    }
+
+    return null
+  }
+
+  async findByUserId(userId: string): Promise<Patient | null> {
+    const patient = await prismaClient.patient.findFirst({
+      where: {
+        user_id: userId,
+      },
+    })
+
+    if (patient) {
+      return PatientMapper.prismaToEntity(patient)
+    }
+
+    return null
+  }
 }
