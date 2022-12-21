@@ -16,4 +16,4 @@ app.use(router)
 
 app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument))
 
-app.listen(3000, () => console.log('Server is running on PORT 3000'))
+app.listen(8080, () => console.log('Server is running on PORT 3000'))
