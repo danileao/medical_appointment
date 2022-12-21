@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createPatientController = void 0;
+const user_prisma_repository_1 = require("../../../users/repositories/implementations/user.prisma.repository");
+const patient_prisma_repository_1 = require("../../repositories/prisma/patient.prisma.repository");
+const create_patient_controller_1 = require("./create-patient.controller");
+const userRepository = new user_prisma_repository_1.UserPrismaRepository();
+const patientRepository = new patient_prisma_repository_1.PatientPrismaRepository();
+const createPatientController = new create_patient_controller_1.CreatePatientController(userRepository, patientRepository);
+exports.createPatientController = createPatientController;

@@ -1,0 +1,16 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createAppointmentController = void 0;
+const ethereal_mail_provider_1 = require("../../../../infra/providers/mail/implementations/ethereal.mail.provider");
+const doctor_schedule_prisma_repository_1 = require("../../../doctor/repositories/implementations/prisma/doctor-schedule.prisma.repository");
+const doctor_prisma_repository_1 = require("../../../doctor/repositories/implementations/prisma/doctor.prisma.repository");
+const patient_prisma_repository_1 = require("../../../patient/repositories/prisma/patient.prisma.repository");
+const appointment_prisma_repository_1 = require("../../repositories/prisma/appointment.prisma.repository");
+const create_appointment_controller_1 = require("./create-appointment.controller");
+const patientRepository = new patient_prisma_repository_1.PatientPrismaRepository();
+const doctorRepository = new doctor_prisma_repository_1.DoctorPrismaRepository();
+const doctorScheduleRepository = new doctor_schedule_prisma_repository_1.DoctorSchedulePrismaRepository();
+const appointmentPrismaRepository = new appointment_prisma_repository_1.AppointmentPrismaRepository();
+const ethrealMailProvider = new ethereal_mail_provider_1.EtherealMailProvider();
+const createAppointmentController = new create_appointment_controller_1.CreateAppointmentController(patientRepository, doctorRepository, doctorScheduleRepository, appointmentPrismaRepository, ethrealMailProvider);
+exports.createAppointmentController = createAppointmentController;

@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.freeScheduleController = void 0;
+const doctor_schedule_prisma_repository_1 = require("../../../doctor/repositories/implementations/prisma/doctor-schedule.prisma.repository");
+const appointment_prisma_repository_1 = require("../../repositories/prisma/appointment.prisma.repository");
+const free_schedules_controller_1 = require("./free-schedules.controller");
+const doctorSchedulePrismaRepository = new doctor_schedule_prisma_repository_1.DoctorSchedulePrismaRepository();
+const appointmentPrismaRepository = new appointment_prisma_repository_1.AppointmentPrismaRepository();
+const freeScheduleController = new free_schedules_controller_1.FreeSchedulesController(doctorSchedulePrismaRepository, appointmentPrismaRepository);
+exports.freeScheduleController = freeScheduleController;

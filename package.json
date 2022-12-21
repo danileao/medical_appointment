@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon src/server.ts",
     "start": "nodemon src/server.ts",
-    "build": "rimraf dist && tsc",
+    "build": "tsc",
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
     "test:ui": "vitest --ui"
