@@ -9,11 +9,11 @@ const logger = winston_1.default.createLogger({
     format: winston_1.default.format.combine(winston_1.default.format.timestamp({ format: 'DD/MM/YYYY HH:mm:ss' }), winston_1.default.format.json()),
     transports: [
         new winston_1.default.transports.File({
-            filename: 'logs/app.log',
+        // filename: 'src/logs/app.log',
         }),
         new winston_1.default.transports.File({
-            filename: 'logs/error.log',
-            level: 'error',
+        // filename: 'src/logs/error.log',
+        // level: 'error',
         }),
     ],
 });
