@@ -1,3 +1,4 @@
+import { PatientWithUserDTO } from '../dto/patient.dto'
 import { Patient } from '../entities/patient.entity'
 
 export interface IPatientRepository {
@@ -8,5 +9,5 @@ export interface IPatientRepository {
   ): Promise<Patient | null>
   findById(id: string): Promise<Patient | null>
 
-  findByUserId(userId: string): Promise<Patient | null>
+  findByUserId(userId: string): Promise<PatientWithUserDTO | null>
 }
