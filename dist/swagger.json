@@ -1,299 +1,133 @@
 {
-    "openapi": "3.0.0",
-    "info": {
-        "title": "Serviço de agendamento de consulta",
-        "description": "Essa API é responsável pelo agendamento de consultas",
-        "version": "1.0.0"
-    },
-    "paths": {
-        "/specialities": {
-            "post": {
-                "tags": ["Speciality"],
-                "security": [
-                    {
-                        "bearerAuth": []
-                    }
-                ],
-                "description": "Cadastro de especialidade",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/SpecialityRequest"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/SpecialityResponse"
-                                }
-                            }
-                        }
-                    }
-                }
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Serviço de agendamento de consulta",
+    "description": "Essa API é reponsável pelo agendamento de consultas",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/specialities": {
+      "post": {
+        "tags": ["speciality"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Cadastro de especialidade",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SpecialityRequest"
+              }
             }
+          }
         },
-        "/login": {
-            "post": {
-                "description": "Autenticação do usuário",
-                "tags": ["users"],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/LoginRequest"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Token gerado"
-                    },
-                    "401": {
-                        "description": "Mensagem de erro"
-                    }
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SpecialityResponse"
                 }
+              }
             }
-        },
-        "/doctors": {
-            "post": {
-                "description": "Cadastro de um médico",
-                "tags": ["doctors"],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/DoctorRequest"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Médico criado com sucesso"
-                    },
-                    "400": {
-                        "description": "Erro de cadastro"
-                    }
-                }
-            }
-        },
-        "/doctor-info": {
-            "post": {
-                "description": "Cadastro de informação de um médico",
-                "tags": ["doctor-info"],
-                "security": [
-                    {
-                        "bearerAuth": []
-                    }
-                ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/DoctorInfoRequest"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Informação do médico criado com sucesso"
-                    },
-                    "400": {
-                        "description": "Erro de cadastro"
-                    }
-                }
-            }
-        },
-        "/patients": {
-            "post": {
-                "description": "Cadastro de um paciente",
-                "tags": ["patients"],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/PatientRequest"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Paciente criado com sucesso"
-                    },
-                    "400": {
-                        "description": "Erro de cadastro"
-                    }
-                }
-            }
+          }
         }
+      }
     },
-    "components": {
-        "schemas": {
-            "SpecialityRequest": {
-                "type": "object",
-                "properties": {
-                    "name": {
-                        "type": "string",
-                        "description": "Nome da especialidade",
-                        "example": "NAME_TEST"
-                    },
-                    "description": {
-                        "type": "string",
-                        "description": "Descrição da especialidade",
-                        "example": "DESCRIPTION_TEST"
-                    }
-                },
-                "required": ["name", "description"]
-            },
-            "SpecialityResponse": {
-                "type": "object",
-                "properties": {
-                    "name": {
-                        "type": "string",
-                        "description": "Nome da especialidade",
-                        "example": "NAME_TEST"
-                    },
-                    "description": {
-                        "type": "string",
-                        "description": "Descrição da especialidade",
-                        "example": "DESCRIPTION_TEST"
-                    },
-                    "id": {
-                        "type": "string",
-                        "description": "Id da especialidade cadastrada",
-                        "format": "uuid"
-                    },
-                    "createdAt": {
-                        "type": "string",
-                        "description": "Data de criação da especialidade",
-                        "format": "date-time"
-                    }
-                }
-            },
-            "LoginRequest": {
-                "type": "object",
-                "properties": {
-                    "username": {
-                        "type": "string",
-                        "description": "username de login",
-                        "example": "username_test"
-                    },
-                    "password": {
-                        "type": "string",
-                        "description": "password de login",
-                        "example": "password_test"
-                    }
-                }
-            },
-            "DoctorRequest": {
-                "type": "object",
-                "properties": {
-                    "crm": {
-                        "type": "string",
-                        "description": "CRM do médico",
-                        "example": "123456",
-                        "length": 6
-                    },
-                    "email": {
-                        "type": "string",
-                        "description": "Email do médico",
-                        "example": "email@email.com.br"
-                    },
-                    "username": {
-                        "type": "string",
-                        "description": "Username do médico",
-                        "example": "username"
-                    },
-                    "password": {
-                        "type": "string",
-                        "description": "Senha do médico",
-                        "example": "password"
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "Nome do médico",
-                        "example": "username"
-                    },
-                    "specialityId": {
-                        "type": "string",
-                        "description": "Especialidade do médico",
-                        "format": "uuid"
-                    }
-                }
-            },
-            "DoctorInfoRequest": {
-                "type": "object",
-                "properties": {
-                    "startAt": {
-                        "type": "string",
-                        "description": "Horário de início de atendimento",
-                        "example": "10:00"
-                    },
-                    "endAt": {
-                        "type": "string",
-                        "description": "Horário de término de atendimento",
-                        "example": "11:00"
-                    },
-                    "duration": {
-                        "type": "number",
-                        "description": "Duração do atendimento em minutos",
-                        "example": "40"
-                    },
-                    "price": {
-                        "type": "number",
-                        "description": "Valor do atendimento",
-                        "example": "150"
-                    }
-                }
-            },
-            "PatientRequest": {
-                "type": "object",
-                "properties": {
-                    "document": {
-                        "type": "string",
-                        "description": "Documento do paciente",
-                        "example": "123456",
-                        "min": 5
-                    },
-                    "email": {
-                        "type": "string",
-                        "description": "Email do paciente",
-                        "example": "email@email.com.br"
-                    },
-                    "username": {
-                        "type": "string",
-                        "description": "Username do paciente",
-                        "example": "username"
-                    },
-                    "password": {
-                        "type": "string",
-                        "description": "Senha do paciente",
-                        "example": "password"
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "Nome do paciente",
-                        "example": "username"
-                    }
-                }
+    "/login": {
+      "post": {
+        "description": "Autenticação do usuário",
+        "tags": ["users"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
             }
+          }
         },
-        "securitySchemes": {
-            "bearerAuth": {
-                "description": "Autenticação da API",
-                "type": "http",
-                "scheme": "bearer",
-                "bearerFormat": "JWT",
-                "tokenUrl": "http://localhost:3000/login"
-            }
+        "responses": {
+          "200": {
+            "description": "Token gerado"
+          },
+          "401": {
+            "description": "Mensagem de erro"
+          }
         }
+      }
     }
+  },
+  "components": {
+    "schemas": {
+      "SpecialityRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Nome da especialidade",
+            "example": "NAME_TEST"
+          },
+          "description": {
+            "type": "string",
+            "description": "Descriçao da especialidade",
+            "example": "DESCRIPTION_TEST"
+          }
+        },
+        "required": ["name", "description"]
+      },
+      "SpecialityResponse": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Nome da especialidade",
+            "example": "NAME_TEST"
+          },
+          "description": {
+            "type": "string",
+            "description": "Descriçao da especialidade",
+            "example": "DESCRIPTION_TEST"
+          },
+          "id": {
+            "type": "string",
+            "description": "Id da especialidade cadastrada",
+            "format": "uuid"
+          },
+          "creadtedAt": {
+            "type": "string",
+            "description": "Data de criação da especialidade",
+            "format": "date-time"
+          }
+        }
+      },
+      "LoginRequest": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "username de login",
+            "example": "username_test"
+          },
+          "password": {
+            "type": "string",
+            "description": "password de login",
+            "example": "password_test"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "description": "Autenticação da API",
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "tokenUrl": "http://localhost:3000/login"
+      }
+    }
+  }
 }

@@ -1,7 +1,9 @@
 import { prismaClient } from '../../../../infra/databases/prisma.config'
+import { endOfDay, startOfDay } from '../../../../utils/date'
 import { Appointment } from '../../entities/appointment.entity'
 import {
   AppointmentsDate,
+  AppointmentsWithPatient,
   IAppointmentRepository,
 } from '../appointment.repository'
 
@@ -46,5 +48,21 @@ export class AppointmentPrismaRepository implements IAppointmentRepository {
         id: data.id,
       },
     })
+  }
+
+  async findAllTodayIncludePatients(): Promise<AppointmentsWithPatient[]> {
+    const result = await prismaClient.appointment.findMany({
+      where: {
+        date: {
+          gte: startOfDay(),
+          lte: endOfDay(),
+        },
+      },
+      include: {
+        patient: true,
+      },
+    })
+
+    return result
   }
 }

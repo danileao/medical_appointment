@@ -41,3 +41,11 @@ export function dateToString(date: Date) {
 export function toDate(date: Date) {
   return dayjs(date).toDate()
 }
+
+export function startOfDay() {
+  return dayjs().utc().startOf('D').toDate()
+}
+
+export function endOfDay() {
+  return dayjs().utc().endOf('D').toDate()
+}
