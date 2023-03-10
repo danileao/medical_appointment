@@ -16,6 +16,7 @@ model User {
   createdAt DateTime @default(now())
   doctor    Doctor?
   patient   Patient?
+  avatar    String?
 
   @@map("users")
 }

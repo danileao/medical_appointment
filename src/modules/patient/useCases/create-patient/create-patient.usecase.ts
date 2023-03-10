@@ -18,11 +18,12 @@ export class CreatePatientUseCase {
     private patientRepository: IPatientRepository
   ) {}
 
-  async execute(data: CreatePatientRequest) {
+  async execute(data: CreatePatientRequest, avatar?: string) {
     const user = await User.create({
       name: data.name,
       password: data.password,
       username: data.username,
+      avatar: avatar,
     })
 
     const existUser = await this.userRepository.findByUsername(data.username)

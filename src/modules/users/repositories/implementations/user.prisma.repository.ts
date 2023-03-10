@@ -4,13 +4,17 @@ import { IUserRespository } from '../user.repository'
 
 export class UserPrismaRepository implements IUserRespository {
   async findByUsername(username: string): Promise<User | undefined> {
-    const user = await prismaClient.user.findUnique({
-      where: {
-        username,
-      },
-    })
-
-    return user || undefined
+    try {
+      const user = await prismaClient.user.findUnique({
+        where: {
+          username,
+        },
+      })
+      return user || undefined
+    } catch (err) {
+      console.log({ err })
+      return undefined
+    }
   }
   async save(data: User): Promise<User> {
     const user = await prismaClient.user.create({
@@ -18,6 +22,7 @@ export class UserPrismaRepository implements IUserRespository {
         name: data.name,
         password: data.password,
         username: data.username,
+        avatar: data.avatar,
       },
     })
 

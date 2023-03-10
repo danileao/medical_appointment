@@ -29,7 +29,7 @@ export class JWTToken implements IToken {
     return token
   }
 
-  validate(token: string): TokenUser | null {
+  public validate(token: string): TokenUser | null {
     try {
       return verify(token, this.TOKEN_SECRET_CRYPTO) as TokenUser
     } catch (err) {

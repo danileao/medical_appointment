@@ -2,6 +2,8 @@ import { CustomError } from '../../../../errors/custom.error'
 import { IPasswordCrypto } from '../../../../infra/shared/crypto/password.crypto'
 import { IToken } from '../../../../infra/shared/token/token'
 import { IUserRespository } from '../../repositories/user.repository'
+import { sign } from 'jsonwebtoken'
+import { CreateConnectionRedis } from '../../../../infra/providers/redis'
 
 type AuthenticateRequest = {
   username: string
@@ -49,6 +51,22 @@ export class AuthenticateUserUseCase {
 
     const tokenGenerated = this.token.create(user)
 
-    return tokenGenerated
+    // Gerar um refresh_token
+
+    const refreshTokenSecret = process.env.SECRET_KEY_REFRESH_TOKEN || ''
+
+    const refreshToken = sign({}, refreshTokenSecret, {
+      subject: user.id,
+      expiresIn: process.env.REFRESH_TOKEN_EXPIRES_IN,
+    })
+    // Salvar no redis
+
+    const redisClient = new CreateConnectionRedis()
+    await redisClient.setValue(user.id, refreshToken)
+
+    return {
+      token: tokenGenerated,
+      refreshToken,
+    }
   }
 }
